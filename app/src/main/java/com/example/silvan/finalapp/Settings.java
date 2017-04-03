@@ -79,16 +79,16 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
 
     private void ponLengua(SharedPreferences sharedPreferences, String key){
         String valor = SP.getString(key, "1");
-        String lengua = "en_UK";
+        String lengua = "en";
         switch (valor){
             case "1":
-                lengua = "en_US";
+                lengua = "en";
                 break;
             case "2":
-                lengua = "ca_CA";
+                lengua = "ca";
                 break;
             case "3":
-                lengua = "es_ES";
+                lengua = "es";
                 break;
         }
         setLocale(lengua);
@@ -124,7 +124,7 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
     }
 
 
-    /*@Override
+    @Override
     protected void onPause() {
         super.onPause();
         Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
@@ -149,6 +149,6 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
         ponTema(SP);
         super.onResume();
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
 }
