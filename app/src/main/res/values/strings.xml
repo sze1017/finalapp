@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">FinalApp</string>
+    <string name="bienvenida">Welcome</string>
+    <string name="selecionCentro">Choose your studying centre: </string>
+
+    <!-- Acitvity impresoras -->
+    <string name="tituloEstadoImpr">Sabadell\'s printers status:</string>
+
+    <!-- Configuracion -->
+    <string name="confTemaTitulo">Use light theme*: </string>
+
+    <string name="confLenguaTitulo">Displayed language:</string>
+    <string name="confLenguaDescr">Change the app\'s language without changing your phone\'s one*</string>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalApp</string>
+    <string name="bienvenida">Bienvenido</string>
+    <string name="selecionCentro">Escoge tu centro: </string>
+
+    <!-- Activity impresoras -->
+    <string name="tituloEstadoImpr">Estado de las impresor de Sabadell</string>
+
+    <!-- Settings -->
+    <string name="confTemaTitulo">Usar el tema claro*: </string>
+
+    <string name="confLenguaTitulo">Idioma:</string>
+    <string name="confLenguaDescr">Cambia la lengua de la aplicacion sin cambiar la del telefono*</string>
+</resources>
