@@ -19,22 +19,23 @@ public class EscogeCentro extends PersonalActivity {
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = new Intent(EscogeCentro.this, GestionImpresoras.class);
-                startActivity(i);
+                lanzarSettings();
             }
         });
 
         Button b2 = (Button) findViewById(R.id.button3);
-        b1.setOnClickListener(new View.OnClickListener(){
+        b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = new Intent(EscogeCentro.this, GestionImpresoras.class);
-                startActivity(i);
+                lanzarSettings();
             }
         });
     }
 
     private void lanzarSettings(){
-
+        String nombre = this.getClass().getCanonicalName();
+        Intent intent = new Intent(EscogeCentro.this, Settings.class);
+        intent.putExtra("callingActivity", nombre );
+        startActivity(intent);
     }
 }

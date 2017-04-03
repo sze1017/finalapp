@@ -18,7 +18,7 @@ public class MainActivity extends PersonalActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Intent i = new Intent(MainActivity.this, Settings.class);
+                Intent i = new Intent(MainActivity.this, EscogeCentro.class);
                 startActivity(i);
             }//run
         }//runnable

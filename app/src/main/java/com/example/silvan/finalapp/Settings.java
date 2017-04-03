@@ -20,27 +20,20 @@ import java.util.Locale;
  */
 
 public class Settings extends PreferenceActivity  implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private String callingActivity = "";
     private SharedPreferences SP;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         SP = PreferenceManager.getDefaultSharedPreferences(this);
         SP.registerOnSharedPreferenceChangeListener(this);
-        ponTema(SP);
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
-
-    }
-    private void ponTema(SharedPreferences SP){
-        boolean appTheme = SP.getBoolean("temaAplicacion", true);
-        if (appTheme){
-            this.setTheme(R.style.LightTheme);
-        }
-        else {
-            this.setTheme(R.style.BlackTheme);
+        if (callingActivity.isEmpty()){
+            Intent i = getIntent();
+            callingActivity =  i.getStringExtra("callingActivity");
         }
     }
-
 
     public static class MyPreferenceFragment extends PreferenceFragment
     {
@@ -51,20 +44,55 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
             addPreferencesFromResource(R.xml.preferences);
         }
     }
+
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        switch (key){
+            case "temaAplicacion":
+                ponTema(SP);
+                break;
+            case "lenguaAplicacion":
+                ponLengua(sharedPreferences, key);
+                break;
+        }
         finish();
         startActivity(getIntent());
     }
+    private void ponTema(SharedPreferences SP){
+        int version = android.os.Build.VERSION.SDK_INT;
+        SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean appTheme = SP.getBoolean("applicationTheme", true);
+        if (version >20) {
+            if (appTheme) {
+                this.setTheme(R.style.LightTheme);
+            } else {
+                this.setTheme(R.style.BlackTheme);
+            }
+        }
+        else{
+            if (appTheme) {
+                this.setTheme(R.style.OldLightTheme);
+            } else {
+                this.setTheme(R.style.OldBlackTheme);
+            }
+        }
+    }
 
-    //@Override
-    //public void onBackPressed() {
-        /*
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);*/
-    //}
-
+    private void ponLengua(SharedPreferences sharedPreferences, String key){
+        String valor = SP.getString(key, "1");
+        String lengua = "en_UK";
+        switch (valor){
+            case "1":
+                lengua = "en_US";
+                break;
+            case "2":
+                lengua = "ca_CA";
+                break;
+            case "3":
+                lengua = "es_ES";
+                break;
+        }
+        setLocale(lengua);
+    }
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -72,12 +100,31 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, Settings.class);
-        startActivity(refresh);
-        finish();
     }
 
+
+
     @Override
+    public void onBackPressed() {
+        Class<?> c = null;
+        if (callingActivity != null) {
+            try {
+                c = Class.forName(callingActivity);
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            Intent intent = new Intent(Settings.this, c);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    /*@Override
     protected void onPause() {
         super.onPause();
         Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
@@ -102,6 +149,6 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
         ponTema(SP);
         super.onResume();
         Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 }
