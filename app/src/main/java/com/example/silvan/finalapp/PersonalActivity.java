@@ -18,20 +18,12 @@ public class PersonalActivity extends AppCompatActivity {
     private void setTheme(){
         int version = android.os.Build.VERSION.SDK_INT;
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean appTheme = SP.getBoolean("applicationTheme", true);
-        if (version >20) {
-            if (appTheme) {
-                this.setTheme(R.style.LightTheme);
-            } else {
-                this.setTheme(R.style.BlackTheme);
-            }
+        boolean appTheme = SP.getBoolean("temaAplicacion", true);
+        if (appTheme){
+            this.setTheme(R.style.AppTheme);
         }
-        else{
-            if (appTheme) {
-                this.setTheme(R.style.OldLightTheme);
-            } else {
-                this.setTheme(R.style.OldBlackTheme);
-            }
+        else {
+            this.setTheme(R.style.AppThemeDark);
         }
     }
 

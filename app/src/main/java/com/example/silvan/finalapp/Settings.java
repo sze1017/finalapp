@@ -60,20 +60,12 @@ public class Settings extends PreferenceActivity  implements SharedPreferences.O
     private void ponTema(SharedPreferences SP){
         int version = android.os.Build.VERSION.SDK_INT;
         SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean appTheme = SP.getBoolean("applicationTheme", true);
-        if (version >20) {
-            if (appTheme) {
-                this.setTheme(R.style.LightTheme);
-            } else {
-                this.setTheme(R.style.BlackTheme);
-            }
+        boolean appTheme = SP.getBoolean("temaAplicacion", true);
+        if (appTheme){
+            this.setTheme(R.style.LightTheme);
         }
-        else{
-            if (appTheme) {
-                this.setTheme(R.style.OldLightTheme);
-            } else {
-                this.setTheme(R.style.OldBlackTheme);
-            }
+        else {
+            this.setTheme(R.style.DarkTheme);
         }
     }
 

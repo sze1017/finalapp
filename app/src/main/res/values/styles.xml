@@ -8,24 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="LightTheme" parent="android:Theme.Material.Light">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="BlackTheme" parent="android:Theme.Material">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!-- Temas para el Preference Activity -->
+    <style name="LightTheme" parent="Theme.AppCompat.Light">
     </style>
 
-    <style name="OldLightTheme" parent="android:Theme.Holo.Light">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="OldBlackTheme" parent="android:Theme.Holo">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="DarkTheme" parent="Theme.AppCompat">
     </style>
 
 </resources>
